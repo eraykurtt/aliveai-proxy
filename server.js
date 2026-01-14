@@ -24,7 +24,7 @@ app.get('/api/poses', async (req, res) => {
               console.log('Login attempt with email:', email);
 
     // Önce login yap ve token al
-          const loginResponse = await fetch('https://api.aliveai.app/api/v1/members/login', {
+          const loginResponse = await fetch('https://api.aliveai.app/members/login', {
                   method: 'POST',
                   headers: { 'Content-Type': 'application/json' },
                   body: JSON.stringify({ email, password })
@@ -40,7 +40,7 @@ app.get('/api/poses', async (req, res) => {
 
       
       // AliveAI'dan pozları çek
-          const response = await fetch('https://api.aliveai.app/api/v1/controlnet/list', {
+          const response = await fetch('https://api.aliveai.app/controlnet/list', {
                   method: 'GET',
                   headers: {
                 'Authorization': `Bearer ${accessToken}`,
