@@ -40,7 +40,7 @@ app.get('/api/poses', async (req, res) => {
 
       
       // AliveAI'dan pozları çek
-          const response = await fetch('https://api.aliveai.app/controlnet/list', {
+          const response = await fetch('https://api.aliveai.app/poses', {
                   method: 'GET',
                   headers: {
                 'Authorization': `Bearer ${accessToken}`,
