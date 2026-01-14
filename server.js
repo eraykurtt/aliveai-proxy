@@ -22,11 +22,26 @@ app.get('/api/poses', async (req, res) => {
                   return res.status(500).json({ error: 'API credentials not configured' });
                 }
 
-          // AliveAI'dan pozları çek
+    // Önce login yap ve token al
+          const loginResponse = await fetch('https://api.aliveai.app/api/v1/members/login', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({ email, password })
+                        });
+
+          if (!loginResponse.ok) {
+                  return res.status(401).json({ error: 'Authentication failed' });
+                }
+
+          const loginData = await loginResponse.json();
+          const accessToken = loginData.accessToken;
+
+      
+      // AliveAI'dan pozları çek
           const response = await fetch('https://api.aliveai.app/api/v1/controlnet/list', {
                   method: 'GET',
                   headers: {
-                            'Authorization': `Bearer ${email}:${password}`,
+                            'Authorization': `Bearer ${ema'Authorization': `Bearer ${accessToken}`,
                             'Content-Type': 'application/json'
                                     }
                         });
