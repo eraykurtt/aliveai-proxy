@@ -41,7 +41,7 @@ app.get('/api/poses', async (req, res) => {
           const response = await fetch('https://api.aliveai.app/api/v1/controlnet/list', {
                   method: 'GET',
                   headers: {
-                            'Authorization': `Bearer ${ema'Authorization': `Bearer ${accessToken}`,
+                'Authorization': `Bearer ${accessToken}`,
                             'Content-Type': 'application/json'
                                     }
                         });
