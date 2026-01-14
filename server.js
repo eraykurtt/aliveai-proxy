@@ -21,6 +21,7 @@ app.get('/api/poses', async (req, res) => {
           if (!email || !password) {
                   return res.status(500).json({ error: 'API credentials not configured' });
                 }
+              console.log('Login attempt with email:', email);
 
     // Önce login yap ve token al
           const loginResponse = await fetch('https://api.aliveai.app/api/v1/members/login', {
@@ -28,6 +29,7 @@ app.get('/api/poses', async (req, res) => {
                   headers: { 'Content-Type': 'application/json' },
                   body: JSON.stringify({ email, password })
                         });
+              console.log('Login response status:', loginResponse.status, loginResponse.statusText);
 
           if (!loginResponse.ok) {
                   return res.status(401).json({ error: 'Authentication failed' });
